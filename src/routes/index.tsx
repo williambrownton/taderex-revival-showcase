@@ -107,7 +107,7 @@ function Index() {
         <p className="eyebrow">Recent work</p>
         <h2 className="mt-4 max-w-2xl text-4xl font-extrabold leading-tight md:text-6xl">Nigerian spaces, finished properly.</h2>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {[projects[0], projects[3], projects[1]].map((p, i) => (
+          {[projects[0]!, projects[3]!, projects[1]!].map((p, i) => (
             <figure key={p.title} className={`group relative overflow-hidden ${i === 0 ? "md:row-span-2" : ""}`}>
               <img src={p.image} alt={`${p.tag} project in ${p.place}`} loading="lazy" className="h-full min-h-72 w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink to-transparent p-6 text-ink-foreground">

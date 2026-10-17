@@ -19,7 +19,7 @@ export const Route = createFileRoute("/contact")({
 const field = "w-full border bg-card px-4 py-3 text-sm outline-none focus:border-primary";
 
 function Contact() {
-  const [f, setF] = useState({ name: "", phone: "", service: services[0].title, location: "", date: "", details: "" });
+  const [f, setF] = useState({ name: "", phone: "", service: services[0]!.title, location: "", date: "", details: "" });
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => setF({ ...f, [k]: e.target.value });
   const body = `Hello Taderex, I would like to book a site visit.\n\nName: ${f.name}\nPhone: ${f.phone}\nService: ${f.service}\nLocation: ${f.location}\nPreferred date: ${f.date}\n\nDetails: ${f.details}`;
   const submit = (e: React.FormEvent) => { e.preventDefault(); window.open(`${WA}?text=${encodeURIComponent(body)}`, "_blank"); };
