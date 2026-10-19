@@ -1,0 +1,18 @@
+import { img, services } from "@/lib/site";
+
+const additions = [
+  { title: "Bespoke Kitchens & Cabinetry", price: "On request", unit: "tailored quotation", image: img.kitchen, home: img.kitchen, text: "From a practical family kitchen to a statement island: coordinated cabinetry, worktops, lighting and appliance layouts, designed around your space.", items: ["Made-to-measure cabinetry", "Stone worktops & splashbacks", "Storage & appliance planning", "Installation & final alignment"] },
+  { title: "Bathroom Renovation", price: "On request", unit: "tailored quotation", image: img.bathroom, home: img.bathroom, text: "Thoughtful bathrooms with considered drainage, moisture protection and beautiful surfaces. We coordinate the concealed services as carefully as the visible finish.", items: ["Wet-area waterproofing", "Tiles & sanitary fittings", "Shower screens & vanities", "Plumbing & drainage checks"] },
+  { title: "POP Ceilings & Architectural Lighting", price: "On request", unit: "tailored quotation", image: img.pop, home: img.pop, text: "Clean ceiling geometry, decorative cornices and layered lighting that give a room depth without overwhelming the architecture.", items: ["Ceiling layout & levels", "Cove & recessed lighting", "Cornices & decorative details", "Access panels & finishing"] },
+  { title: "Flooring, Marble & Tiling", price: "On request", unit: "tailored quotation", image: img.dining, home: img.dining, text: "A refined finish starts with a sound base. We coordinate floor preparation, tile setting-out and transitions for surfaces that feel consistent from room to room.", items: ["Subfloor preparation", "Marble & porcelain installation", "Grout & edge detailing", "Skirting & threshold alignment"] },
+  { title: "Wall Panelling & Decorative Painting", price: "On request", unit: "tailored quotation", image: img.bedroom, home: img.bedroom, text: "Feature walls, precision panelling and paint systems that bring texture and character to residential and commercial interiors.", items: ["Wall preparation & screeding", "Decorative wall panels", "Colour & finish selection", "Surface protection & touch-ups"] },
+  { title: "Bespoke Joinery & Wardrobes", price: "On request", unit: "tailored quotation", image: img.bedroom, home: img.bedroom, text: "Built-in storage, wardrobes and media units planned to make the most of the space, with coordinated materials and careful hardware selection.", items: ["Wardrobe & storage layouts", "Material & hardware selection", "Custom media walls", "Fitting & alignment"] },
+];
+const slugs = ["property-renovation", "interior-design", "premium-finishing", "office-fit-out", "exterior-facade", "project-outsourcing", "bespoke-kitchens", "bathroom-renovation", "ceilings-lighting", "flooring-marble", "wall-panelling", "bespoke-joinery"];
+export const detailedServices = [...services, ...additions].map((service, i) => ({ ...service, slug: slugs[i] ?? "service", number: String(i + 1).padStart(2, "0") }));
+export const deliverySteps = [
+  { title: "Survey & brief", text: "We review your dimensions, existing condition, intended use and preferred finish. Photos, drawings and a site assessment guide the scope." },
+  { title: "Design & specification", text: "Layouts, material selections and the bill of quantities bring the work into focus. The quotation sets out the agreed inclusions and project sequence." },
+  { title: "Execution & coordination", text: "Site supervision coordinates the trades, material deliveries and installation. Progress is documented as the work develops." },
+  { title: "Inspection & handover", text: "Alignment, surfaces, fittings and the agreed scope are checked. Final cleaning and snagging prepare your space for use." },
+];
