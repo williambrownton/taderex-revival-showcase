@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, Phone, MessageCircle, CalendarCheck, MapPin, Mail, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { PHONE, TEL, WA, EMAIL, MAP } from "@/lib/site";
 
 const nav = [
@@ -8,6 +9,7 @@ const nav = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/projects", label: "Projects" },
+  { to: "/kitchens", label: "Kitchens" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -33,7 +35,7 @@ export function Header() {
     <header className={`fixed inset-x-0 top-0 z-50 text-ink-foreground transition-colors ${scrolled || open ? "bg-ink/95 backdrop-blur" : ""}`}>
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
         <Logo />
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} className="text-sm text-ink-muted transition-colors hover:text-ink-foreground" activeProps={{ className: "text-sm text-ink-foreground" }} activeOptions={{ exact: true }}>
               {n.label}
@@ -44,9 +46,9 @@ export function Header() {
           <a href={TEL} className="btn-ghost-light !py-2.5 !px-4"><Phone className="h-4 w-4" />Call Now</a>
           <Link to="/contact" className="btn-primary !py-2.5 !px-5">Book Now</Link>
         </div>
-        <button aria-label="Menu" onClick={() => setOpen(!open)} className="lg:hidden">
+        <Button variant="ghost" size="icon" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)} className="text-ink-foreground hover:bg-ink-foreground/10 hover:text-ink-foreground lg:hidden">
           {open ? <X /> : <Menu />}
-        </button>
+        </Button>
       </div>
       {open && (
         <nav className="border-t border-ink-foreground/10 px-5 pb-6 lg:hidden">
@@ -113,7 +115,7 @@ export function FloatingActions() {
 export function PageHero({ eyebrow, title, text, image }: { eyebrow: string; title: string; text: string; image: string }) {
   return (
     <section className="relative overflow-hidden bg-ink text-ink-foreground">
-      <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+      <img src={image} alt="" className="image-drift absolute inset-0 h-full w-full object-cover" />
       <div className="hero-overlay absolute inset-0" />
       <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-40 md:px-8 md:pb-28 md:pt-48">
         <p className="eyebrow animate-rise">{eyebrow}</p>

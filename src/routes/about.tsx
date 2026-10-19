@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ShieldCheck, Camera, Users, Award } from "lucide-react";
 import { img } from "@/lib/site";
+import { DimensionCard } from "@/components/DimensionCard";
 import { PageHero, CtaBand } from "@/components/SiteChrome";
 
 export const Route = createFileRoute("/about")({
@@ -8,6 +9,8 @@ export const Route = createFileRoute("/about")({
     meta: [
       { title: "About Taderex Nigeria Limited — Lagos Renovation Contractor" },
       { name: "description", content: "Meet the Yaba-based team behind Taderex: supervised crews, fixed pricing and a workmanship guarantee on every handover." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "About Taderex Nigeria Limited" },
       { property: "og:description", content: "A Lagos renovation contractor with a designer's eye for detail." },
     ],
@@ -42,13 +45,13 @@ function About() {
         </div>
       </section>
       <section className="bg-secondary py-24">
-        <div className="mx-auto grid max-w-7xl gap-px bg-border px-5 sm:grid-cols-2 md:px-8 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-7xl gap-5 px-5 sm:grid-cols-2 md:px-8 lg:grid-cols-4">
           {values.map(({ icon: Icon, t, d }) => (
-            <div key={t} className="bg-secondary p-8">
+            <DimensionCard key={t} className="rounded-lg border bg-card p-8">
               <Icon className="h-7 w-7 text-primary" />
               <h3 className="mt-5 text-xl font-bold">{t}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{d}</p>
-            </div>
+            </DimensionCard>
           ))}
         </div>
       </section>
