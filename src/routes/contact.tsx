@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Phone, MessageCircle, Mail, MapPin, Clock } from "lucide-react";
-import { img, services, PHONE, TEL, WA, EMAIL, MAP } from "@/lib/site";
+import { img, PHONE, TEL, WA, EMAIL, MAP } from "@/lib/site";
+import { detailedServices } from "@/lib/service-details";
+import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/SiteChrome";
 
 export const Route = createFileRoute("/contact")({
@@ -9,6 +11,8 @@ export const Route = createFileRoute("/contact")({
     meta: [
       { title: "Contact & Book a Site Visit — Taderex Nigeria Limited" },
       { name: "description", content: "Request a quote or book a free site visit in Lagos. Call +234 803 869 4133 or chat on WhatsApp." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Book a free site visit — Taderex" },
       { property: "og:description", content: "Send your brief straight to our WhatsApp or call the office." },
     ],
@@ -19,7 +23,7 @@ export const Route = createFileRoute("/contact")({
 const field = "w-full border bg-card px-4 py-3 text-sm outline-none focus:border-primary";
 
 function Contact() {
-  const [f, setF] = useState({ name: "", phone: "", service: services[0]!.title, location: "", date: "", details: "" });
+  const [f, setF] = useState({ name: "", phone: "", service: detailedServices[0]?.title ?? "Full Property Renovation", location: "", date: "", details: "" });
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => setF({ ...f, [k]: e.target.value });
   const body = `Hello Taderex, I would like to book a site visit.\n\nName: ${f.name}\nPhone: ${f.phone}\nService: ${f.service}\nLocation: ${f.location}\nPreferred date: ${f.date}\n\nDetails: ${f.details}`;
   const submit = (e: React.FormEvent) => { e.preventDefault(); window.open(`${WA}?text=${encodeURIComponent(body)}`, "_blank"); };
@@ -41,14 +45,14 @@ function Contact() {
             <label className="text-sm font-semibold">Full name<input required maxLength={100} value={f.name} onChange={set("name")} className={`${field} mt-2`} /></label>
             <label className="text-sm font-semibold">Phone number<input required type="tel" maxLength={20} value={f.phone} onChange={set("phone")} className={`${field} mt-2`} /></label>
             <label className="text-sm font-semibold">Service needed
-              <select value={f.service} onChange={set("service")} className={`${field} mt-2`}>{services.map((s) => <option key={s.title}>{s.title}</option>)}</select>
+              <select value={f.service} onChange={set("service")} className={`${field} mt-2`}>{detailedServices.map((s) => <option key={s.title}>{s.title}</option>)}</select>
             </label>
             <label className="text-sm font-semibold">Property location<input maxLength={150} value={f.location} onChange={set("location")} className={`${field} mt-2`} /></label>
             <label className="text-sm font-semibold sm:col-span-2">Preferred visit date<input type="date" value={f.date} onChange={set("date")} className={`${field} mt-2`} /></label>
             <label className="text-sm font-semibold sm:col-span-2">Project details<textarea rows={5} maxLength={1000} value={f.details} onChange={set("details")} className={`${field} mt-2`} /></label>
           </div>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <button type="submit" className="btn-primary">Book Now via WhatsApp</button>
+            <Button type="submit" className="h-auto whitespace-normal px-6 py-4">Book Now via WhatsApp</Button>
             <a href={`mailto:${EMAIL}?subject=${encodeURIComponent("Quote request")}&body=${encodeURIComponent(body)}`} className="text-sm font-bold underline underline-offset-4">Send by email</a>
           </div>
         </form>

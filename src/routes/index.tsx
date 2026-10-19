@@ -1,6 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, Star, Ruler, HardHat, Sparkles, Receipt, Phone } from "lucide-react";
-import { img, services, projects, TEL, PHONE } from "@/lib/site";
+import { ArrowRight, ArrowUpRight, MapPin, Star, Phone } from "lucide-react";
+import { img, projects, TEL, PHONE } from "@/lib/site";
+import { WhyTaderex } from "@/components/WhyTaderex";
+import { KitchenGallery } from "@/components/KitchenGallery";
+import { DimensionCard } from "@/components/DimensionCard";
+import { Button } from "@/components/ui/button";
+import { detailedServices } from "@/lib/service-details";
 import { CtaBand } from "@/components/SiteChrome";
 
 export const Route = createFileRoute("/")({
@@ -8,6 +13,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Taderex Nigeria Limited — Renovation & Interior Finishing in Lagos" },
       { name: "description", content: "Renovation, POP ceilings, interior design, office fit-out and façade works across Lagos and Nigeria. Book a free site visit." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Taderex — Renovation with a finish you can feel" },
       { property: "og:description", content: "Homes and offices rebuilt, finished and styled across Nigeria." },
     ],
@@ -16,12 +23,6 @@ export const Route = createFileRoute("/")({
 });
 
 const marquee = ["Renovation", "POP Ceilings", "Interior Design", "Office Fit-Out", "Screeding", "Marble & Tiling", "Façade Works", "Outsourcing"];
-const why = [
-  { icon: Ruler, t: "Measured design", d: "Every job starts with a survey, a drawing and a written scope." },
-  { icon: HardHat, t: "Own site crew", d: "Directly supervised artisans — no disappearing subcontractors." },
-  { icon: Sparkles, t: "Finish obsession", d: "Straight lines, sharp corners, clean grout. Every single time." },
-  { icon: Receipt, t: "Fixed pricing", d: "A bill of quantities you approve before the first block moves." },
-];
 const steps = [
   { t: "Site visit", d: "We measure, photograph and listen to how you want the space to work." },
   { t: "Design & BOQ", d: "Concept boards plus a transparent bill of quantities and timeline." },
@@ -32,13 +33,13 @@ const steps = [
 function Index() {
   return (
     <>
-      <section className="relative min-h-[100svh] overflow-hidden bg-ink text-ink-foreground">
-        <img src={img.hero} alt="Nigerian construction crew renovating a duplex in Lagos at golden hour" className="absolute inset-0 h-full w-full object-cover" />
+      <section className="relative min-h-[92svh] overflow-hidden bg-ink text-ink-foreground">
+        <img src={img.hero} alt="Nigerian construction crew renovating a duplex in Lagos at golden hour" className="image-drift absolute inset-0 h-full w-full object-cover" />
         <div className="hero-overlay absolute inset-0" />
-        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-24 pt-32 md:px-8">
+        <div className="relative mx-auto flex min-h-[92svh] max-w-7xl flex-col justify-center px-5 pb-24 pt-32 md:px-8">
           <p className="eyebrow animate-rise flex items-center gap-2"><MapPin className="h-3.5 w-3.5" />Yaba, Lagos · Serving all Nigeria</p>
           <h1 className="animate-rise mt-5 max-w-4xl text-5xl font-extrabold leading-[0.95] sm:text-6xl md:text-8xl">
-            Renovation with a finish you can feel.
+            Taderex Renovation<br /><span className="text-ink-muted">& Interior Finishing.</span>
           </h1>
           <p className="animate-rise mt-8 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
             Taderex Nigeria Limited rebuilds, finishes and styles homes and offices across Nigeria — from bare structure to the last coat of paint.
@@ -62,32 +63,20 @@ function Index() {
         </div>
       </div>
 
-      <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
-        <p className="eyebrow">Why Taderex</p>
-        <h2 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl">Built like a contractor. Detailed like a designer.</h2>
-        <div className="mt-16 grid gap-px border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {why.map(({ icon: Icon, t, d }) => (
-            <div key={t} className="bg-background p-8">
-              <Icon className="h-7 w-7 text-primary" />
-              <h3 className="mt-6 text-xl font-bold">{t}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{d}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <WhyTaderex />
 
       <section className="bg-secondary py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="eyebrow">What we deliver</p>
-              <h2 className="mt-4 max-w-2xl text-4xl font-extrabold leading-tight md:text-6xl">Pick a scope. We price it the same day.</h2>
+              <h2 className="mt-4 max-w-2xl text-4xl font-extrabold leading-tight md:text-6xl">From full renovation<br />to exquisite detail.</h2>
             </div>
-            <Link to="/services" className="btn-outline self-start">View Services</Link>
+            <Button asChild variant="outline" className="h-12 self-start"><Link to="/services">View all services <ArrowUpRight /></Link></Button>
           </div>
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {services.slice(0, 3).map((s) => (
-              <article key={s.title} className="group flex flex-col bg-card">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {detailedServices.filter((_, i) => [0, 1, 2, 6, 7, 8].includes(i)).map((s) => (
+              <DimensionCard key={s.title}><article className="group flex h-full flex-col overflow-hidden rounded-lg border bg-card">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img src={s.home} alt={s.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   <span className="absolute left-4 top-4 bg-ink px-3 py-1.5 text-xs font-bold text-ink-foreground">{s.price}</span>
@@ -95,30 +84,24 @@ function Index() {
                 <div className="flex flex-1 flex-col p-7">
                   <h3 className="text-2xl font-bold">{s.title}</h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-                  <Link to="/contact" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">Request a Quote <ArrowRight className="h-4 w-4" /></Link>
+                  <Button asChild variant="link" className="mt-6 justify-start px-0"><Link to="/services/$slug" params={{ slug: s.slug }}>Explore the details <ArrowUpRight /></Link></Button>
                 </div>
-              </article>
+              </article></DimensionCard>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
-        <p className="eyebrow">Recent work</p>
-        <h2 className="mt-4 max-w-2xl text-4xl font-extrabold leading-tight md:text-6xl">Nigerian spaces, finished properly.</h2>
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {[projects[0]!, projects[3]!, projects[1]!].map((p, i) => (
-            <figure key={p.title} className={`group relative overflow-hidden ${i === 0 ? "md:row-span-2" : ""}`}>
-              <img src={p.image} alt={`${p.tag} project in ${p.place}`} loading="lazy" className="h-full min-h-72 w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink to-transparent p-6 text-ink-foreground">
-                <p className="font-display text-lg font-bold">{["Façade & exterior", "Kitchen remodel", "Living room design"][i]}</p>
-                <p className="text-sm text-ink-muted">{["Lekki, Lagos", "Yaba, Lagos", "Ikeja GRA"][i]}</p>
-              </figcaption>
-            </figure>
-          ))}
+      <section className="bg-background py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="eyebrow">Recent work</p><h2 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl">Nigerian spaces,<br /><span className="text-primary">finished properly.</span></h2><p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">From a striking façade to the intimacy of a family living room — explore the materials, craftsmanship and finishing details that bring a space together.</p></div><Button asChild variant="outline" className="h-12"><Link to="/projects">Explore recent work <ArrowUpRight /></Link></Button></div>
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {projects.filter((_, i) => [0, 1, 3, 6].includes(i)).map((p, i) => <DimensionCard key={p.title}><Link to="/projects" className="group relative block overflow-hidden rounded-lg"><img src={p.image} alt={`${p.title} — ${p.place}`} loading="lazy" className={`w-full object-cover transition-transform duration-700 group-hover:scale-105 ${i === 0 ? "aspect-[4/3]" : "aspect-[4/3]"}`} /><div className="photo-shade absolute inset-0" /><div className="absolute inset-x-0 bottom-0 p-6 text-ink-foreground md:p-8"><span className="gallery-glass inline-block rounded-sm px-3 py-1 text-xs">{p.tag}</span><h3 className="mt-4 text-2xl font-bold md:text-3xl">{p.title}</h3><div className="mt-3 flex items-center justify-between text-sm text-ink-muted"><span>{p.place}</span><ArrowUpRight className="h-5 w-5 text-ink-foreground" /></div></div></Link></DimensionCard>)}
+          </div>
         </div>
-        <Link to="/projects" className="btn-outline mt-10">See all projects <ArrowRight className="h-4 w-4" /></Link>
       </section>
+
+      <KitchenGallery preview />
 
       <section className="bg-ink py-24 text-ink-foreground md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
