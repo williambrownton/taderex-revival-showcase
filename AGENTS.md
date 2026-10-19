@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep extended service specifications in a shared browser-safe catalogue consumed by service detail pages and the quote selector; this keeps scope information consistent.
+- Keep imported online photographs in asset pointers with source and photographer metadata; present external kitchen images as inspiration, never completed client work.
+- Use shared dimensional cards for pointer-driven depth, with reduced-motion and touch fallbacks; this keeps animation accessible without affecting navigation.
