@@ -14,13 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_brief_access: {
+        Row: {
+          blocked_at: string
+          id: string
+          message: string
+          status: number
+        }
+        Insert: {
+          blocked_at?: string
+          id: string
+          message: string
+          status: number
+        }
+        Update: {
+          blocked_at?: string
+          id?: string
+          message?: string
+          status?: number
+        }
+        Relationships: []
+      }
+      ai_brief_limits: {
+        Row: {
+          count: number
+          expires_at: string
+          key: string
+        }
+        Insert: {
+          count?: number
+          expires_at: string
+          key: string
+        }
+        Update: {
+          count?: number
+          expires_at?: string
+          key?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claim_brief_request: {
+        Args: { max_requests: number; rate_key: string; window_seconds: number }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
