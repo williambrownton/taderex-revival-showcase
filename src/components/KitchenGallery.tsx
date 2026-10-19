@@ -1,0 +1,20 @@
+import { useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { ArrowUpRight, Maximize2, Check } from "lucide-react";
+import { kitchens } from "@/lib/kitchens";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { DimensionCard } from "@/components/DimensionCard";
+
+export function KitchenGallery({ preview = false }: { preview?: boolean }) {
+  const [style, setStyle] = useState("All");
+  const [selected, setSelected] = useState<(typeof kitchens)[number] | null>(null);
+  const list = preview ? kitchens.slice(0, 3) : kitchens.filter(k => style === "All" || k.style === style);
+  return <section className="bg-secondary py-24 md:py-32"><div className="mx-auto max-w-7xl px-5 md:px-8">
+    <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="eyebrow">The kitchen collection · Inspiration</p><h2 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl">Extraordinary kitchens.<br />Every detail considered.</h2><p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">Explore luxurious materials, beautiful cabinetry and spaces made for gathering. International design references to inspire your own Taderex kitchen.</p></div>{preview && <Button asChild variant="outline" className="h-12"><Link to="/kitchens">Explore the collection <ArrowUpRight /></Link></Button>}</div>
+    {!preview && <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label="Kitchen style">{["All", "Stone & marble", "Natural wood", "Light & minimal", "Dark & dramatic"].map(t => <Button key={t} variant={style === t ? "default" : "outline"} onClick={() => setStyle(t)} aria-pressed={style === t}>{t}</Button>)}</div>}
+    <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">{list.map(k => <DimensionCard key={k.slug}><article className="group"><div className="relative aspect-[4/3] overflow-hidden rounded-lg"><img src={k.image} alt={`${k.title} — ${k.style} luxury kitchen inspiration`} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /><Button size="icon" variant="ghost" className="gallery-glass absolute bottom-4 right-4 text-ink-foreground hover:bg-ink/80 hover:text-ink-foreground" aria-label={`View ${k.title}`} title="View photograph and details" onClick={() => setSelected(k)}><Maximize2 /></Button></div><p className="eyebrow mt-6">{k.style}</p><h3 className="mt-2 text-2xl font-bold">{k.title}</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{k.text}</p><Button variant="link" className="mt-3 px-0" onClick={() => setSelected(k)}>Explore details <ArrowUpRight /></Button></article></DimensionCard>)}</div>
+    <p className="mt-10 border-t pt-6 text-xs leading-relaxed text-muted-foreground">Inspiration photographs from Unsplash, credited in each photograph’s details. These are design references, not Taderex completed projects.</p>
+    <Dialog open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }}><DialogContent className="max-h-[90svh] max-w-5xl overflow-y-auto p-0">{selected && <><img src={selected.image} alt={selected.title} className="max-h-[50svh] w-full object-cover" /><div className="p-6 md:p-8"><DialogTitle className="text-2xl">{selected.title}</DialogTitle><DialogDescription className="mt-4 leading-relaxed">{selected.text}</DialogDescription><ul className="mt-5 grid gap-3 sm:grid-cols-3">{selected.details.map(d => <li key={d} className="flex gap-2 text-sm"><Check className="h-4 w-4 shrink-0 text-primary" />{d}</li>)}</ul><div className="mt-7 flex flex-wrap items-center justify-between gap-5"><a href={selected.source} target="_blank" rel="noreferrer" className="text-xs text-muted-foreground underline">Photo: {selected.credit} / Unsplash</a><Button asChild><Link to="/contact">Discuss your kitchen <ArrowUpRight /></Link></Button></div></div></>}</DialogContent></Dialog>
+  </div></section>;
+}

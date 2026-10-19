@@ -1,13 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, MessageCircle, Phone } from "lucide-react";
-import { img, services, WA, TEL, PHONE } from "@/lib/site";
+import { img, WA, TEL, PHONE } from "@/lib/site";
+import { detailedServices } from "@/lib/service-details";
+import { Button } from "@/components/ui/button";
+import { DimensionCard } from "@/components/DimensionCard";
 import { PageHero, CtaBand } from "@/components/SiteChrome";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Services & Prices — Taderex Nigeria Limited" },
       { name: "description", content: "Renovation, interior design, premium finishing, office fit-out, façade works and project outsourcing in Lagos, with honest starting prices." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Taderex Services — Renovation to moving day" },
       { property: "og:description", content: "Honest starting prices for Lagos renovation and finishing projects." },
     ],
@@ -18,14 +23,14 @@ export const Route = createFileRoute("/services")({
 function Services() {
   return (
     <>
-      <PageHero eyebrow="Services" title="Everything between bare blockwork and moving day." image={img.pop}
-        text="Prices below are honest starting points for Lagos projects. Send us the drawings or a few photos and you get a firm bill of quantities." />
+      <PageHero eyebrow="Services" title="Renovation & Finishing Services" image={img.pop}
+        text="From complete renovations to bespoke kitchens, bathrooms and the smallest finishing detail. Original starting prices are retained; specialist work is quoted to your scope." />
       <section className="mx-auto max-w-7xl space-y-20 px-5 py-24 md:space-y-28 md:px-8 md:py-32">
-        {services.map((s, i) => (
+        {detailedServices.map((s, i) => (
           <article key={s.title} className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-            <div className={`overflow-hidden ${i % 2 ? "md:order-2" : ""}`}>
+            <DimensionCard className="overflow-hidden rounded-lg"><div>
               <img src={s.image} alt={`${s.title} by Taderex Nigeria Limited`} loading="lazy" className="aspect-[4/3] w-full object-cover" />
-            </div>
+            </div></DimensionCard>
             <div>
               <span className="font-display text-sm font-bold text-muted-foreground">0{i + 1}</span>
               <h2 className="mt-2 text-3xl font-extrabold md:text-5xl">{s.title}</h2>
@@ -35,7 +40,7 @@ function Services() {
                 {s.items.map((it) => <li key={it} className="flex items-center gap-2 text-sm font-semibold"><Check className="h-4 w-4 text-primary" />{it}</li>)}
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/contact" className="btn-primary">Request a Quote</Link>
+                <Button asChild className="h-12"><Link to="/services/$slug" params={{ slug: s.slug }}>Explore service details</Link></Button>
                 <a href={WA} target="_blank" rel="noreferrer" className="btn-outline"><MessageCircle className="h-4 w-4" />Chat on WhatsApp</a>
               </div>
             </div>
