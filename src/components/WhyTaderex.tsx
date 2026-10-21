@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Ruler, HardHat, Sparkles, Receipt, Plus, Minus, ArrowUpRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DimensionCard } from "@/components/DimensionCard";
+import { reasons } from "@/lib/company";
 
 const principles = [
   { icon: Ruler, title: "Measured design", text: "Every job starts with a survey, a drawing and a written scope.", detail: "Room proportions, circulation and material junctions are considered together, so the finished space works as beautifully as it looks.", items: ["Site dimensions & condition survey", "Layouts & material coordination", "An agreed scope before execution"] },
@@ -23,6 +24,7 @@ export function WhyTaderex() {
           {open === i && <div id={`principle-${i}`} className="mt-5 animate-rise border-t border-ink-foreground/15 pt-5"><p className="text-sm leading-relaxed text-ink-muted">{detail}</p><ul className="mt-5 space-y-3">{items.map(item => <li key={item} className="flex gap-2 text-xs leading-relaxed"><Check className="h-4 w-4 shrink-0 text-primary" />{item}</li>)}</ul></div>}
         </DimensionCard>)}
       </div>
+      <ul className="mt-12 grid gap-4 border-t border-ink-foreground/15 pt-8 sm:grid-cols-2 lg:grid-cols-3">{reasons.map(reason => <li key={reason} className="flex items-center gap-3 text-sm"><Check className="h-4 w-4 shrink-0 text-primary" />{reason}</li>)}</ul>
     </div>
   </section>;
 }

@@ -5,6 +5,7 @@ import { detailedServices } from "@/lib/service-details";
 import { Button } from "@/components/ui/button";
 import { DimensionCard } from "@/components/DimensionCard";
 import { PageHero, CtaBand } from "@/components/SiteChrome";
+import { serviceGroups } from "@/lib/company";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -24,7 +25,12 @@ function Services() {
   return (
     <>
       <PageHero eyebrow="Services" title="Renovation & Finishing Services" image={img.pop}
-        text="From complete renovations to bespoke kitchens, bathrooms and the smallest finishing detail. Original starting prices are retained; specialist work is quoted to your scope." />
+        text="Renovations, finishing and outsourcing services. High-end residential, corporate and industrial spaces, intentionally designed and expertly finished." />
+      <section className="bg-secondary py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-3 md:px-8">
+          {serviceGroups.map(group => <div key={group.title}><h2 className="text-2xl font-bold">{group.title}</h2><ul className="mt-6 space-y-3">{group.items.map(item => <li key={item.title}><Button asChild variant="link" className="h-auto justify-start whitespace-normal px-0 text-left"><Link to="/services/$slug" params={{ slug: item.slug }}><Check className="h-4 w-4 shrink-0" />{item.title}</Link></Button></li>)}</ul></div>)}
+        </div>
+      </section>
       <section className="mx-auto max-w-7xl space-y-20 px-5 py-24 md:space-y-28 md:px-8 md:py-32">
         {detailedServices.map((s, i) => (
           <article key={s.title} className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
