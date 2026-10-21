@@ -53,6 +53,48 @@ export type Database = {
         }
         Relationships: []
       }
+      site_overrides: {
+        Row: {
+          id: string
+          kind: string
+          original: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          id: string
+          kind: string
+          original: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          id?: string
+          kind?: string
+          original?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -62,9 +104,16 @@ export type Database = {
         Args: { max_requests: number; rate_key: string; window_seconds: number }
         Returns: boolean
       }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -191,6 +240,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin"],
+    },
   },
 } as const

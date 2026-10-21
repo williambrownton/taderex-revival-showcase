@@ -8,6 +8,13 @@
       "when": 1792425681297,
       "tag": "0000_brief_request_safety",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792581735471,
+      "tag": "0001_admin_site_editor",
+      "breakpoints": true
     }
   ]
 }
