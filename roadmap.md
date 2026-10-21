@@ -1,4 +1,6 @@
 # Taderex refresh
+- [ ] Place supplied company profile, services and contact information on relevant pages.
+- [ ] Replace site logo and favicon with supplied artwork; verify navigation and quote contact links.
 - [x] Enhance Why Taderex with dimensional animated detailing.
 - [x] Expand services and add individual detail pages.
 - [x] Elevate recent work and add a luxury kitchen inspiration page with online photographs.
