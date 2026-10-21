@@ -31,7 +31,7 @@ function Contact() {
     { icon: Phone, t: "Call Now", d: PHONE, href: TEL },
     { icon: MessageCircle, t: "Chat on WhatsApp", d: "Fastest reply, 9am – 5pm", href: WA },
     { icon: Mail, t: "Email", d: EMAIL, href: `mailto:${EMAIL}` },
-    { icon: MapPin, t: "Office", d: "Tejuosho, Yaba, Lagos 101241, Lagos, Nigeria", href: MAP },
+    { icon: MapPin, t: "Location", d: "Lagos, Nigeria", href: MAP },
   ];
   return (
     <>

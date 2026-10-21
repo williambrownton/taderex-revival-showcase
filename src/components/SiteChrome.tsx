@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Menu, X, Phone, MessageCircle, CalendarCheck, MapPin, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PHONE, TEL, WA, EMAIL, MAP } from "@/lib/site";
+import logoAsset from "@/assets/taderex-logo.png.asset.json";
+import { company } from "@/lib/company";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -15,9 +17,8 @@ const nav = [
 
 function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-3">
-      <span className="grid h-9 w-9 place-items-center bg-primary font-display text-sm font-extrabold text-primary-foreground">T</span>
-      <span className="font-display text-sm font-bold tracking-[0.25em]">TADEREX</span>
+    <Link to="/" aria-label="Taderex home" className="block shrink-0">
+      <img src={logoAsset.url} alt="Taderex — chrome lettering with golden emblem" className="h-auto w-36 object-contain sm:w-44" />
     </Link>
   );
 }
@@ -71,7 +72,7 @@ export function Footer() {
         <div className="md:col-span-2">
           <Logo />
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-muted">
-            Taderex Nigeria Limited rebuilds, finishes and styles homes and offices across Nigeria — from bare structure to the last coat of paint.
+            {company.name} — renovations, finishing and outsourcing services for residential and corporate environments. Over 12 years of proven excellence.
           </p>
         </div>
         <div>
@@ -85,7 +86,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-ink-muted">
             <li><a href={TEL} className="flex gap-2 hover:text-ink-foreground"><Phone className="h-4 w-4 shrink-0" />{PHONE}</a></li>
             <li><a href={`mailto:${EMAIL}`} className="flex gap-2 hover:text-ink-foreground"><Mail className="h-4 w-4 shrink-0" />{EMAIL}</a></li>
-            <li><a href={MAP} target="_blank" rel="noreferrer" className="flex gap-2 hover:text-ink-foreground"><MapPin className="h-4 w-4 shrink-0" />Tejuosho, Yaba, Lagos 101241</a></li>
+            <li><a href={MAP} target="_blank" rel="noreferrer" className="flex gap-2 hover:text-ink-foreground"><MapPin className="h-4 w-4 shrink-0" />Lagos, Nigeria</a></li>
             <li className="flex gap-2"><Clock className="h-4 w-4 shrink-0" />Mon – Sat, 9:00 AM – 5:00 PM</li>
           </ul>
         </div>

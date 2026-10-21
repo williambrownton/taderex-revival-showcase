@@ -7,6 +7,7 @@ import { DimensionCard } from "@/components/DimensionCard";
 import { Button } from "@/components/ui/button";
 import { detailedServices } from "@/lib/service-details";
 import { CtaBand } from "@/components/SiteChrome";
+import { company } from "@/lib/company";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,17 +38,18 @@ function Index() {
         <img src={img.hero} alt="Nigerian construction crew renovating a duplex in Lagos at golden hour" className="image-drift absolute inset-0 h-full w-full object-cover" />
         <div className="hero-overlay absolute inset-0" />
         <div className="relative mx-auto flex min-h-[92svh] max-w-7xl flex-col justify-center px-5 pb-24 pt-32 md:px-8">
-          <p className="eyebrow animate-rise flex items-center gap-2"><MapPin className="h-3.5 w-3.5" />Yaba, Lagos · Serving all Nigeria</p>
+          <p className="eyebrow animate-rise flex items-center gap-2"><MapPin className="h-3.5 w-3.5" />Lagos, Nigeria · Over 12 years of proven excellence</p>
           <h1 className="animate-rise mt-5 max-w-4xl text-5xl font-extrabold leading-[0.95] sm:text-6xl md:text-8xl">
-            Taderex Renovation<br /><span className="text-ink-muted">& Interior Finishing.</span>
+            Taderex Interior<br /><span className="text-ink-muted">& Exterior Design.</span>
           </h1>
           <p className="animate-rise mt-8 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
-            Taderex Nigeria Limited rebuilds, finishes and styles homes and offices across Nigeria — from bare structure to the last coat of paint.
+            Renovations | Finishing | Outsourcing Services. {company.focus}. We don’t just improve spaces. We elevate experiences.
           </p>
           <div className="animate-rise mt-10 flex flex-wrap gap-3">
             <Link to="/contact" className="btn-primary">Request a Quote <ArrowRight className="h-4 w-4" /></Link>
             <Link to="/services" className="btn-ghost-light">View Services</Link>
           </div>
+          <p className="mt-6 max-w-xl text-sm leading-relaxed text-ink-muted">At TadeRex, excellence is not a promise – it is our Culture.</p>
           <div className="mt-10 flex items-center gap-3 text-sm text-ink-muted">
             <span className="flex text-star">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</span>
             5.0 rating on Google Business

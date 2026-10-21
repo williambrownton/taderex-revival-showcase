@@ -15,7 +15,7 @@ export const img = { hero, living, craft, office, facade, kitchen, bathroom, tea
 export const PHONE = "+234 803 869 4133";
 export const TEL = "tel:+2348038694133";
 export const WA = "https://wa.me/2348038694133";
-export const EMAIL = "hello@taderex.ng";
+export const EMAIL = "tade.rexnigltd@yahoo.com";
 export const MAP = "https://maps.app.goo.gl/PNboN1a8S6VZtfWk7";
 
 export const services = [
